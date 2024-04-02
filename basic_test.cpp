@@ -93,3 +93,111 @@ int main(){
 
     return 0;
 }
+
+
+
+
+// #include <iostream>
+// #include <map>
+// #include <vector>
+// #include <bcrypt.h>
+
+// class TextByAnonymous {
+// private:
+//     std::map<std::string, std::vector<std::string>> messages;  // username and message
+//     std::map<std::string, std::wstring> users;  // username and hashed password
+
+//     bool authenticate(const std::string& username, const std::wstring& password) {
+//         return BCryptCheckPassword(password.c_str(), users[username].c_str()) == 0;
+//     }
+
+//     bool authenticate_user_exist(const std::string& username, const std::wstring& password) {
+//         if (users.find(username) != users.end()) {
+//             return false;
+//         } else {
+//             std::wstring hashed_password;
+//             if (BCryptHashPassword(password.c_str(), NULL, &hashed_password) != 0) {
+//                 std::cerr << "Error hashing password." << std::endl;
+//                 return false;
+//             }
+//             users[username] = hashed_password;
+//             messages[username].push_back("Welcome to TextByAnonymous");
+//             return true;
+//         }
+//     }
+
+//     bool get_message(const std::string& username, const std::string& message) {
+//         auto it = users.find(username);
+//         if (it != users.end()) {
+//             messages[username].push_back(message);
+//             return true;
+//         } else {
+//             return false;
+//         }
+//     }
+
+//     void print_inbox(const std::string& username, const std::wstring& password) {
+//         if (authenticate(username, password)) {
+//             for (const auto& message : messages[username]) {
+//                 std::cout << message << std::endl;
+//             }
+//         } else {
+//             std::cout << "Authentication failed" << std::endl;
+//         }
+//     }
+
+// public:
+//     void login(const std::string& username, const std::wstring& password) {
+//         print_inbox(username, password);
+//     }
+
+//     void create_user(const std::string& username, const std::wstring& password) {
+//         if (authenticate_user_exist(username, password)) {
+//             std::cout << "Account created successfully" << std::endl;
+//             login(username, password);
+//         } else {
+//             std::cout << "This username already exists" << std::endl;
+//         }
+//     }
+
+//     void send_message_to_user(const std::string& username, const std::string& message) {
+//         if (get_message(username, message)) {
+//             std::cout << "Message sent" << std::endl;
+//         } else {
+//             std::cout << "This user not found" << std::endl;
+//         }
+//     }
+// };
+
+// int main() {
+//     TextByAnonymous textByAnonymous;
+//     std::string username;
+//     std::wstring password;
+//     std::string text;
+
+//     // creating the user
+//     std::cin >> username >> text;
+//     password.assign(text.begin(), text.end());
+//     textByAnonymous.create_user(username, password);
+//     std::wcout << std::endl;
+
+//     // checking the username conflict
+//     std::cin >> username >> text;
+//     password.assign(text.begin(), text.end());
+//     textByAnonymous.create_user(username, password);
+//     std::wcout << std::endl;
+
+//     // sending message to the user
+//     std::cin >> username >> text;
+//     textByAnonymous.send_message_to_user(username, text);
+//     std::cin >> text;
+//     textByAnonymous.send_message_to_user(username, text);
+//     std::cin >> text;
+//     textByAnonymous.send_message_to_user(username, text);
+//     std::wcout << std::endl;
+
+//     // checking inbox
+//     textByAnonymous.login(username, password);
+
+//     return 0;
+// }
